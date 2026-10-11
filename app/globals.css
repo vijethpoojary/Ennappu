@@ -1,0 +1,178 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --noise: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  @apply font-sans text-wine antialiased;
+  overflow-x: hidden;
+  background-color: #fff8f0;
+  background-image:
+    radial-gradient(60rem 40rem at 10% -10%, rgba(255, 201, 218, 0.75), transparent 60%),
+    radial-gradient(50rem 40rem at 100% 20%, rgba(233, 216, 255, 0.7), transparent 60%),
+    radial-gradient(60rem 50rem at 0% 70%, rgba(255, 228, 236, 0.8), transparent 60%),
+    radial-gradient(50rem 40rem at 100% 100%, rgba(246, 220, 154, 0.35), transparent 60%);
+  background-attachment: fixed;
+}
+
+body.scroll-locked {
+  overflow: hidden;
+}
+
+::selection {
+  background: #ff8fab;
+  color: #fff;
+}
+
+@layer components {
+  .glass {
+    background: rgba(255, 255, 255, 0.42);
+    -webkit-backdrop-filter: blur(16px) saturate(150%);
+    backdrop-filter: blur(16px) saturate(150%);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 10px 40px -12px rgba(90, 26, 63, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  }
+
+  .glass-dark {
+    background: rgba(42, 15, 42, 0.55);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 201, 218, 0.2);
+    box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.5);
+  }
+
+  .glow-text {
+    text-shadow:
+      0 0 10px rgba(255, 107, 157, 0.55),
+      0 0 30px rgba(255, 107, 157, 0.35),
+      0 0 60px rgba(255, 143, 171, 0.25);
+  }
+
+  .glow-text-soft {
+    text-shadow: 0 0 18px rgba(255, 201, 218, 0.9), 0 0 40px rgba(255, 143, 171, 0.45);
+  }
+
+  .text-gradient {
+    background: linear-gradient(90deg, #e11d74, #ff6b9d, #b794f4, #e9c46a, #e11d74);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .paper {
+    background-color: #fffaf2;
+    background-image:
+      radial-gradient(circle at 15% 10%, rgba(255, 255, 255, 0.95), transparent 45%),
+      radial-gradient(circle at 85% 95%, rgba(214, 170, 120, 0.22), transparent 55%),
+      repeating-linear-gradient(to bottom, transparent 0 39px, rgba(214, 120, 150, 0.13) 39px 40px),
+      var(--noise);
+    box-shadow:
+      0 30px 60px -20px rgba(90, 26, 63, 0.35),
+      inset 0 0 70px rgba(196, 140, 100, 0.18);
+  }
+
+  .grain {
+    position: fixed;
+    inset: 0;
+    z-index: 70;
+    pointer-events: none;
+    opacity: 0.07;
+    background-image: var(--noise);
+    mix-blend-mode: multiply;
+  }
+
+  .preserve-3d {
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+  }
+
+  .backface-hidden {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+}
+
+/* ---------- Ambient background (CSS-only, GPU friendly) ---------- */
+.amb {
+  position: absolute;
+  will-change: transform, opacity;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+.amb-heart {
+  bottom: -60px;
+  animation-name: amb-rise;
+}
+.amb-petal {
+  top: -60px;
+  animation-name: amb-fall;
+}
+.amb-sparkle {
+  animation-name: amb-twinkle;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes amb-rise {
+  0% { transform: translate3d(0, 0, 0) rotate(-10deg); opacity: 0; }
+  10% { opacity: var(--o, 0.5); }
+  85% { opacity: var(--o, 0.5); }
+  100% { transform: translate3d(var(--drift, 30px), -115vh, 0) rotate(20deg); opacity: 0; }
+}
+@keyframes amb-fall {
+  0% { transform: translate3d(0, 0, 0) rotate(0deg); opacity: 0; }
+  10% { opacity: var(--o, 0.5); }
+  85% { opacity: var(--o, 0.5); }
+  100% { transform: translate3d(var(--drift, 60px), 115vh, 0) rotate(540deg); opacity: 0; }
+}
+@keyframes amb-twinkle {
+  0%, 100% { opacity: 0; transform: scale(0.4) rotate(0deg); }
+  50% { opacity: var(--o, 0.7); transform: scale(1) rotate(45deg); }
+}
+
+/* ---------- Balloons ---------- */
+.balloon-rise {
+  animation-name: balloon-rise;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+  transform: translate3d(0, 110%, 0);
+}
+@keyframes balloon-rise {
+  from { transform: translate3d(0, 110%, 0); }
+  to { transform: translate3d(0, calc(-100vh - 10%), 0); }
+}
+.balloon-sway {
+  animation: balloon-sway ease-in-out infinite;
+  transform-origin: 50% 100%;
+}
+@keyframes balloon-sway {
+  0%, 100% { transform: translateX(-6px) rotate(-4deg); }
+  50% { transform: translateX(6px) rotate(4deg); }
+}
+
+/* ---------- Stars ---------- */
+.star-twinkle {
+  animation: star-twinkle 2.8s ease-in-out infinite;
+}
+@keyframes star-twinkle {
+  0%, 100% { opacity: 0.55; transform: scale(0.85); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .amb-heart, .amb-petal { animation: none; opacity: 0; }
+  .amb-sparkle { animation-duration: 8s !important; }
+  .balloon-sway, .star-twinkle { animation: none; }
+  .animate-heartbeat, .animate-shimmer, .animate-spin-slow { animation: none; }
+}

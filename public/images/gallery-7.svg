@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="700" viewBox="0 0 800 700">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e9d8ff"/><stop offset="1" stop-color="#ffc9da"/></linearGradient></defs>
+<rect width="800" height="700" fill="url(#g)"/>
+<g transform="translate(288 215.6) scale(2.24)"><path d="M50 88 C 22 68 0 50 0 27 C 0 11 12 0 27 0 C 37 0 45 5 50 14 C 55 5 63 0 73 0 C 88 0 100 11 100 27 C 100 50 78 68 50 88 Z" fill="#ffffff" opacity="0.55"/></g>
+<text x="50%" y="473.20000000000005" text-anchor="middle" font-family="Georgia, serif" font-size="57" fill="#5a1a3f" opacity="0.75">Memory 7</text>
+<text x="50%" y="530.3428571428572" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#5a1a3f" opacity="0.55">replace /images/gallery-7.svg</text>
+</svg>

@@ -2,10 +2,9 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
-import { hugKiss, sections } from "@/data/content";
+import { hugKiss } from "@/data/content";
 import { particles } from "@/lib/particles";
 import { sfx, unlockAudio } from "@/lib/sound";
-import { SectionHeading } from "./ui/SectionHeading";
 
 export default function HugKiss() {
   const [hugs, setHugs] = useState(0);
@@ -26,7 +25,6 @@ export default function HugKiss() {
 
   return (
     <section id="hugs" className="relative px-4 py-24 md:py-32">
-      <SectionHeading {...sections.hugKiss} />
       <div className="mx-auto grid max-w-4xl gap-5 sm:grid-cols-2 md:gap-8">
         <ZoneButton emoji="🤗" label={hugKiss.hugLabel} count={hugs} unit="hug" onClick={hug} className="from-lavender-300 via-lavender-200 to-blush-200" />
         <ZoneButton emoji="💋" label={hugKiss.kissLabel} count={kisses} unit="kiss" onClick={kiss} className="from-petal via-blush-400 to-blush-200" />

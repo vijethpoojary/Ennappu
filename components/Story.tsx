@@ -64,7 +64,6 @@ function Milestone({ entry, index }: { entry: StoryEntry; index: number }) {
             fill
             sizes="(min-width: 768px) 460px, 90vw"
             className="object-cover transition-transform duration-700 group-hover:scale-105"
-            unoptimized={entry.image.endsWith(".svg")}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-wine/30 to-transparent" />
         </div>

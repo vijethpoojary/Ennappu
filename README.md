@@ -23,13 +23,12 @@ npm start
 
 ## Make it yours
 
-**Everything editable lives in [`data/content.ts`](data/content.ts):** names, headline, story milestones, gallery, reasons, letter text, star notes, the "together since" date and footer.
+**Everything editable lives in [`data/content.ts`](data/content.ts):** names, headline, story milestones, gallery, letter text, star notes and footer.
 
 | What | Where |
 | --- | --- |
-| Photos | Put them in `public/images/` (e.g. `story-1.jpg`), then update the paths in `content.ts`. Placeholder `.svg` files are there now. |
+| Photos | Put them in `public/images/` with the same names (e.g. `story-1.png`) to replace the placeholders. If you use `.jpg`, also update the path in `content.ts`. |
 | Gallery photo shapes | Set `width` / `height` in `gallery` to each photo's real pixel size, or just its ratio (e.g. `3000 x 4000`). |
-| Anniversary date | `together.date`, e.g. `"2023-02-14T18:30:00+05:30"` |
 | Number of balloons | `intro.balloonCount` |
 | Link preview URL | `site.url` (set it to your Vercel URL after deploying) |
 
@@ -47,8 +46,7 @@ A **Skip intro** button is always visible.
 ## Performance & accessibility
 
 - All particle effects share one canvas with pre-rendered emoji sprites. The animation loop stops when nothing is moving, and counts are capped on phones (about 40% of desktop).
-- The starry-night canvas only animates while it's on screen.
-- `prefers-reduced-motion` is respected: far fewer particles, no rising or drifting motion, no typewriter, and static stars.
+- `prefers-reduced-motion` is respected: far fewer particles, no rising or drifting motion, and no typewriter.
 - Sound effects are synthesised with Web Audio, so there are no extra files to load.
 
 ## Deploy to Vercel
@@ -63,8 +61,8 @@ Or from the terminal: `npx vercel` (then `npx vercel --prod`).
 
 ```
 app/            layout (fonts, SEO), page, globals.css, icon.svg (heart favicon)
-components/     Intro, BalloonPop, OpeningHeart, NameBlast, Hero, Story, Gallery, Reasons,
-                HugKiss, Letter, Countdown, StarryNight, Footer, FloatingHearts,
+components/     Intro, BalloonPop, OpeningHeart, NameBlast, Hero, Story, Gallery,
+                HugKiss, Letter, Footer, FloatingHearts,
                 Navbar, CursorTrail, Experience (wires it all together), ui/
 data/content.ts all editable content
 lib/            particles (canvas engine), sound (Web Audio sfx), confetti, hooks

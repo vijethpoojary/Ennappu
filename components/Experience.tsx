@@ -2,7 +2,6 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { particles } from "@/lib/particles";
-import Countdown from "./Countdown";
 import CursorTrail from "./CursorTrail";
 import FloatingHearts from "./FloatingHearts";
 import Footer from "./Footer";
@@ -13,8 +12,6 @@ import Intro from "./Intro";
 import Letter from "./Letter";
 import NameBlast from "./NameBlast";
 import Navbar from "./Navbar";
-import Reasons from "./Reasons";
-import StarryNight from "./StarryNight";
 import Story from "./Story";
 
 export default function Experience() {
@@ -58,11 +55,8 @@ export default function Experience() {
         <Hero start={revealed} onReplay={replay} />
         <Story />
         <Gallery />
-        <Reasons />
         <HugKiss />
         <Letter />
-        <Countdown />
-        <StarryNight />
       </main>
 
       <Footer />

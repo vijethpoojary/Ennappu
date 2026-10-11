@@ -85,7 +85,6 @@ export default function Gallery() {
                   height={img.height}
                   sizes="(min-width: 768px) 33vw, 50vw"
                   className="h-auto w-full transition-transform duration-700 group-hover:scale-110"
-                  unoptimized={img.src.endsWith(".svg")}
                 />
               </span>
               <figcaption className="mt-2 text-center font-hand text-lg text-wine/80 sm:text-xl">{img.caption}</figcaption>
@@ -142,7 +141,6 @@ export default function Gallery() {
                     sizes="100vw"
                     draggable={false}
                     className="pointer-events-none select-none object-contain"
-                    unoptimized={gallery[index].src.endsWith(".svg")}
                   />
                 </motion.div>
               </AnimatePresence>

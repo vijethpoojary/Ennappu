@@ -24,17 +24,6 @@ export function prefersReducedMotion() {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
-/** Deterministic PRNG so server and client render identical "random" layouts. */
-export function seeded(seed: number) {
-  return () => {
-    seed |= 0;
-    seed = (seed + 0x6d2b79f5) | 0;
-    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
-    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-  };
-}
-
 /** Split into user-perceived characters so emoji aren't cut in half by the typewriter. */
 export function graphemes(text: string): string[] {
   if (typeof Intl !== "undefined" && "Segmenter" in Intl) {
